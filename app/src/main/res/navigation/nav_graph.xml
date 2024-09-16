@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/homeFragment"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.laioffer.spotify.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home"
+        android:label="HomeFragment"
+        />
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.laioffer.spotify.ui.favorite.FavoriteFragment"
+        tools:layout="@layout/fragment_favorite"
+        android:label="FavoriteFragment"/>
+
+</navigation>
