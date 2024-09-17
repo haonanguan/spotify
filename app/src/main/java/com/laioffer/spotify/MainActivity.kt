@@ -7,12 +7,17 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.laioffer.spotify.network.NetworkApi
-import com.laioffer.spotify.network.NetworkModule
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var api: NetworkApi //field injection, because system called MainActivity, not us, can not use constructor injection
 
     private val TAG = "lifecycle"
 
@@ -41,9 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         //test networking call
         GlobalScope.launch(Dispatchers.IO) {
-            val retrofitClient = NetworkModule.provideRetrofit()
-            val networkApi = retrofitClient.create(NetworkApi::class.java)
-            val response = networkApi.getHomeFeed().execute().body()
+            val response = api.getHomeFeed().execute().body()
             Log.d(TAG, response.toString())
         }
     }
