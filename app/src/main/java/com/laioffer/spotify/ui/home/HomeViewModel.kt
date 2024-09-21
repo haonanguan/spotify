@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repository: HomeRepository
-): ViewModel() {
+): ViewModel() { //due to the need to handle configuration change, we need the ViewModel to handle state
     //data model
     private val _uiState = MutableStateFlow(HomeUiState(feed = emptyList(), isLoading = true))
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
